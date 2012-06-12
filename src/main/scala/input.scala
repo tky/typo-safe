@@ -1,4 +1,4 @@
-package com.tk.libra.input
+package com.tk.libra
 
 trait Resource {
   def read: Iterator[String]

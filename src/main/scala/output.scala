@@ -1,4 +1,4 @@
-package com.tk.libra.output
+package com.tk.libra
 
 trait Result {
 }
