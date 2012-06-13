@@ -2,6 +2,16 @@ package com.tk.libra
 
 import com.tk.libra.utils.Using
 
+trait LineParser {
+  def split(line:String): List[String] = {
+    if (line.isEmpty) {
+      Nil
+    } else {
+      line.trim.split("\\W").toList.filterNot(_.isEmpty)
+    }
+  }
+}
+
 trait Resource {
   def read: List[String]
 }
