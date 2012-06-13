@@ -1,5 +1,7 @@
 package com.tk.libra
 
+import com.tk.libra.utils.Using
+
 trait Resource {
   def read: List[String]
 }
@@ -8,10 +10,11 @@ object MockResource extends Resource {
   override def read: List[String] = List("apple", "applo")
 }
 
-class FileResource(filename: String) extends Resource {
+class FileResource(filename: String) extends Resource with Using {
   import scala.io.Source
   override def read:List[String] = {
-    // TODO: close
-    Source.fromFile(filename).getLines.toList
+    using(Source.fromFile(filename)) { source =>
+      source.getLines.toList
+    }
   }
 }
