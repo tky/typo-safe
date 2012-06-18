@@ -9,14 +9,3 @@ class FileResourceSpec extends Specification {
     }
   }
 }
-
-class LineParseSpec extends Specification {
-  object Parser extends LineParser
-  "parseLine" should {
-    "read simple line" in {
-      Parser.split(" a ") must_== List("a")
-      Parser.split(" a ; b") must_== List("a", "b")
-      Parser.split(" a ; b & c;") must_== List("a", "b", "c")
-    }
-  }
-}
