@@ -4,9 +4,11 @@ package com.tk.libra
 object Executor {
 
   def execute(source: Resource): Result = {
-    val resolver = MockResolver
+    val resolvers = List(FileResolver(source.extension), FileResolver("common")).flatten
     new SimpleResult(
-      source.read.flatMap { word => if (!resolver.resolve(word)) Some(word) else None } toList)
+      source.read.flatMap { word =>
+          if (!resolvers.find(_.resolve(word)).isDefined) Some(word) else None
+        } toList
+      )
   }
-
 }
